@@ -30,11 +30,11 @@ if __name__ == "__main__":
     print("TEST : Chunking a real PDF")
     print("="*50)
     
-    pdf_path = input("Enter PDF path (or press Enter to skip): ")
+    pdf_path = input("Enter PDF path : ")
     if pdf_path:
         pdf_text = extract_text_from_pdf(pdf_path)
         if pdf_text:
             chunks = chunk_text(pdf_text, chunk_size=500, overlap=100)
-            print(f"\n📄 PDF was split into {len(chunks)} chunks")
+            print(f"\nPDF was split into {len(chunks)} chunks")
             print(f"\nFirst chunk preview (200 chars):")
             print(chunks[0][:200])
