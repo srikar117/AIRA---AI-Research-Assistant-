@@ -4,6 +4,7 @@ def chunk_text(text, chunk_size = 1000, overlap = 200):
     chunks = []
     start = 0
 
+    #fixed-size chunking
     #manual chunking to understand logic, see pattern
     # start = 0
     # end = start + chunk_size
