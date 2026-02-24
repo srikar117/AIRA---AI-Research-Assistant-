@@ -87,7 +87,7 @@ with st.sidebar:
                         st.stop()
                     
                     #chunking text
-                    st.sidebar.info("Chunking text...")
+                    st.sidebar.info("✂️ Chunking text...")
                     chunks = chunk_text(text, chunk_size=500, overlap=100)
                     
                     #loading embedding model
@@ -96,7 +96,7 @@ with st.sidebar:
                         st.session_state.model = load_embedding_model()
                     
                     #creating embeddings
-                    st.sidebar.info("Creating embeddings...")
+                    st.sidebar.info("🔢 Creating embeddings...")
                     embeddings = get_embeddings(chunks, st.session_state.model)
                     
                     #building vector store
