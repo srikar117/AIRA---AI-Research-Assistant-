@@ -1,6 +1,6 @@
 ---
 title: AI Research Assistant
-emoji: 🤖
+emoji: 📑
 colorFrom: blue
 colorTo: purple
 sdk: streamlit
