@@ -43,3 +43,7 @@ An intelligent PDF analysis tool powered by AI. Upload any PDF document and ask 
 - What are the key findings?
 - Who are the authors?
 - What datasets were mentioned?
+
+## 👨‍💻 Built By
+
+Sai Srikar 
