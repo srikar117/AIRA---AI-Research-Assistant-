@@ -16,91 +16,209 @@ st.set_page_config(
     initial_sidebar_state = "expanded"
 )
 
-#midnight purple theme
+#slate grey theme
 st.markdown("""
 <style>
-    /* Main background */
+    /* Main background - Cool slate gray gradient */
     .stApp {
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     }
     
-    /* Sidebar */
+    /* Sidebar - Slightly lighter slate */
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #0f3460 0%, #16213e 100%);
+        background: linear-gradient(180deg, #1e293b 0%, #334155 100%);
     }
     
-    /* Chat messages */
+    /* All text in sidebar */
+    [data-testid="stSidebar"] * {
+        color: #e2e8f0 !important;
+    }
+    
+    /* Chat messages container */
     .stChatMessage {
-        background-color: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.04);
+        border-radius: 12px;
+        padding: 16px;
         margin: 10px 0;
+        border: 1px solid rgba(148, 163, 184, 0.1);
     }
     
-    /* User message (you) */
-    [data-testid="stChatMessageContent"] {
-        background-color: rgba(94, 53, 177, 0.3);
-        border-left: 3px solid #a78bfa;
+    /* User message - Subtle gray highlight */
+    [data-testid="stChatMessage"][data-testid*="user"] {
+        background-color: rgba(148, 163, 184, 0.15);
+        border-left: 3px solid #64748b;
     }
     
-    /* Buttons */
+    /* Assistant message */
+    [data-testid="stChatMessage"][data-testid*="assistant"] {
+        background-color: rgba(255, 255, 255, 0.06);
+        border-left: 3px solid #94a3b8;
+    }
+    
+    /* Buttons - Minimal gray with subtle gradient */
     .stButton>button {
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(90deg, #475569 0%, #64748b 100%);
         color: white;
         border: none;
-        border-radius: 8px;
+        border-radius: 10px;
         padding: 10px 24px;
         font-weight: 600;
-        transition: all 0.3s;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
     
     .stButton>button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 6px 16px rgba(100, 116, 139, 0.3);
+        background: linear-gradient(90deg, #64748b 0%, #475569 100%);
     }
     
-    /* File uploader */
+    /* File uploader - Clean minimal border */
     [data-testid="stFileUploader"] {
+        background-color: rgba(255, 255, 255, 0.03);
+        border-radius: 12px;
+        padding: 24px;
+        border: 2px dashed #64748b;
+        transition: all 0.3s ease;
+    }
+    
+    [data-testid="stFileUploader"]:hover {
+        border-color: #94a3b8;
         background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    /* Chat input */
+    .stChatInputContainer {
+        background-color: rgba(255, 255, 255, 0.04);
+        border-radius: 12px;
+        padding: 8px;
+    }
+    
+    .stChatInput>div>div>input {
+        background-color: rgba(255, 255, 255, 0.06);
+        color: #e2e8f0;
+        border: 1px solid rgba(148, 163, 184, 0.2);
         border-radius: 10px;
-        padding: 20px;
-        border: 2px dashed #667eea;
+        padding: 12px;
     }
     
-    /* Text input */
-    .stTextInput>div>div>input {
-        background-color: rgba(255, 255, 255, 0.08);
-        color: white;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
+    .stChatInput>div>div>input:focus {
+        border-color: #64748b;
+        box-shadow: 0 0 0 1px #64748b;
     }
     
-    /* Headers */
-    h1, h2, h3 {
-        color: #e0e0e0;
+    /* Headers - Clean white/gray */
+    h1 {
+        color: #f1f5f9;
         font-weight: 700;
+        letter-spacing: -0.5px;
     }
     
-    /* Accent color for links and highlights */
+    h2, h3 {
+        color: #e2e8f0;
+        font-weight: 600;
+    }
+    
+    /* Paragraph text */
+    p {
+        color: #cbd5e1;
+    }
+    
+    /* Links - Subtle blue-gray */
     a {
-        color: #a78bfa;
+        color: #94a3b8;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    
+    a:hover {
+        color: #cbd5e1;
     }
     
     /* Success messages */
     .stSuccess {
-        background-color: rgba(16, 185, 129, 0.2);
-        border-left: 4px solid #10b981;
+        background-color: rgba(34, 197, 94, 0.15);
+        border-left: 4px solid #22c55e;
+        color: #bbf7d0;
+        border-radius: 10px;
     }
     
     /* Info messages */
     .stInfo {
-        background-color: rgba(59, 130, 246, 0.2);
-        border-left: 4px solid #3b82f6;
+        background-color: rgba(100, 116, 139, 0.15);
+        border-left: 4px solid #64748b;
+        color: #e2e8f0;
+        border-radius: 10px;
+    }
+    
+    /* Error messages */
+    .stError {
+        background-color: rgba(239, 68, 68, 0.15);
+        border-left: 4px solid #ef4444;
+        color: #fecaca;
+        border-radius: 10px;
+    }
+    
+    /* Warning messages */
+    .stWarning {
+        background-color: rgba(251, 191, 36, 0.15);
+        border-left: 4px solid #fbbf24;
+        color: #fef3c7;
+        border-radius: 10px;
     }
     
     /* Spinner */
     .stSpinner > div {
-        border-top-color: #a78bfa !important;
+        border-top-color: #94a3b8 !important;
+    }
+    
+    /* Expander */
+    .streamlit-expanderHeader {
+        background-color: rgba(255, 255, 255, 0.04);
+        color: #e2e8f0;
+        border-radius: 10px;
+    }
+    
+    .streamlit-expanderHeader:hover {
+        background-color: rgba(255, 255, 255, 0.06);
+    }
+    
+    /* Divider */
+    hr {
+        border-color: rgba(148, 163, 184, 0.2);
+    }
+    
+    /* File uploader label */
+    [data-testid="stFileUploader"] label {
+        color: #e2e8f0 !important;
+        font-weight: 500;
+    }
+    
+    /* Scrollbar - Minimal gray */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.03);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: rgba(148, 163, 184, 0.3);
+        border-radius: 5px;
+    }
+            
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(148, 163, 184, 0.5);
+    }
+    
+    /* Code blocks (if any) */
+    code {
+        background-color: rgba(255, 255, 255, 0.06);
+        color: #94a3b8;
+        padding: 2px 6px;
+        border-radius: 4px;
     }
 </style>
 """, unsafe_allow_html=True)
