@@ -16,6 +16,95 @@ st.set_page_config(
     initial_sidebar_state = "expanded"
 )
 
+#midnight purple theme
+st.markdown("""
+<style>
+    /* Main background */
+    .stApp {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+    
+    /* Sidebar */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #0f3460 0%, #16213e 100%);
+    }
+    
+    /* Chat messages */
+    .stChatMessage {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px 0;
+    }
+    
+    /* User message (you) */
+    [data-testid="stChatMessageContent"] {
+        background-color: rgba(94, 53, 177, 0.3);
+        border-left: 3px solid #a78bfa;
+    }
+    
+    /* Buttons */
+    .stButton>button {
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 24px;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    
+    .stButton>button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    /* File uploader */
+    [data-testid="stFileUploader"] {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        padding: 20px;
+        border: 2px dashed #667eea;
+    }
+    
+    /* Text input */
+    .stTextInput>div>div>input {
+        background-color: rgba(255, 255, 255, 0.08);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+    }
+    
+    /* Headers */
+    h1, h2, h3 {
+        color: #e0e0e0;
+        font-weight: 700;
+    }
+    
+    /* Accent color for links and highlights */
+    a {
+        color: #a78bfa;
+    }
+    
+    /* Success messages */
+    .stSuccess {
+        background-color: rgba(16, 185, 129, 0.2);
+        border-left: 4px solid #10b981;
+    }
+    
+    /* Info messages */
+    .stInfo {
+        background-color: rgba(59, 130, 246, 0.2);
+        border-left: 4px solid #3b82f6;
+    }
+    
+    /* Spinner */
+    .stSpinner > div {
+        border-top-color: #a78bfa !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 load_dotenv()
 try:
     API_KEY = st.secrets["GEMINI_API_KEY"]
